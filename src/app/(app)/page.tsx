@@ -1,67 +1,81 @@
-import Image from "next/image";
-import Link from "next/link";
+"use client";
 
-import { Announcement } from "@/components/announcement";
+import { LoaderIcon } from "lucide-react";
+import useSWR from "swr";
+
+import { PostPreview } from "@/components/blog/post-preview";
+
 import {
-  PageActions,
-  PageHeader,
-  PageHeaderDescription,
-  PageHeaderHeading,
-} from "@/components/page-header";
-import { docsConfig } from "@/config/docs";
-import { Button } from "@/registry/new-york/ui/button";
+  AboutMe,
+  Archives,
+  AsideBlock,
+  Category,
+  SkeletonGroup,
+} from "@/components/blog/page-aside";
+import type { ICategory, IPost } from "@/types/blog";
+import { fetcher } from "@/utils/fetcher";
 
 export default function IndexPage() {
+  const { data: categories, isLoading } = useSWR<ICategory>(
+    "/api/category/list",
+    fetcher,
+  );
+
   return (
     <>
-      <PageHeader>
-        <Announcement />
-        <PageHeaderHeading>Build your component library</PageHeaderHeading>
-        <PageHeaderDescription>
-          Beautifully designed components that you can copy and paste into your
-          apps. Made with Tailwind CSS. Open source.
-        </PageHeaderDescription>
-        <PageActions>
-          <Button asChild size="sm">
-            <Link href={{ pathname: `${docsConfig.name}` }}>Get Started</Link>
-          </Button>
-          <Button asChild size="sm" variant="ghost">
-            <Link href={{ pathname: `${docsConfig.name}` }}>Browse Blocks</Link>
-          </Button>
-        </PageActions>
-      </PageHeader>
-
       <div className="border-grid border-b">
         <div className="container-wrapper">
           <div className="container py-4">
-            <div className="[&>a:first-child]:text-primary">Examples Nav</div>
+            <div className="[&>a:first-child]:text-primary flex gap-12 pt-12 px-6">
+              <Preview />
+
+              <div className="flex-col gap-8 hidden md:flex w-1/5">
+                <AsideBlock title="About me">
+                  <AboutMe />
+                </AsideBlock>
+
+                <AsideBlock title="Categories">
+                  {isLoading ? (
+                    <SkeletonGroup length={5} />
+                  ) : !categories?.children.length ? (
+                    <div>empty</div>
+                  ) : (
+                    <Category categories={categories.children} />
+                  )}
+                </AsideBlock>
+
+                <AsideBlock title="Archives">
+                  <Archives />
+                </AsideBlock>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      <div className="container-wrapper">
-        <div className="container py-6">
-          <section className="overflow-hidden rounded-lg border bg-background shadow-md md:hidden md:shadow-xl">
-            <Image
-              src="/examples/cards-light.png"
-              width={1280}
-              height={1214}
-              alt="mobile demo light"
-              className="block dark:hidden"
-            />
-            <Image
-              src="/examples/cards-dark.png"
-              width={1280}
-              height={1214}
-              alt="mobile demo dark"
-              className="hidden dark:block"
-            />
-          </section>
-          <section className="hidden md:block [&>div]:p-0">
-            Example Demo
-          </section>
-        </div>
-      </div>
     </>
+  );
+}
+
+function Preview() {
+  const { data: posts, isLoading } = useSWR<IPost[]>(
+    "/api/content/recent-posts",
+    fetcher,
+  );
+
+  let content: React.ReactNode;
+  if (isLoading) {
+    content = (
+      <div className="flex items-center justify-center h-full w-full">
+        <LoaderIcon className="animate-spin" />
+      </div>
+    );
+  } else if (!posts?.length) {
+    content = <div>No Post Here!</div>;
+  } else {
+    content = posts?.map((post) => <PostPreview key={post.id} post={post} />);
+  }
+
+  return (
+    <div className="flex flex-col flex-grow gap-6 overflow-auto">{content}</div>
   );
 }

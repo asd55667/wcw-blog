@@ -7,7 +7,7 @@ import { Icons } from "@/components/icon";
 import { docsConfig } from "@/config/docs";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
-import { capitalize } from "lodash";
+import { capitalize } from "@/utils";
 
 export function MainNav() {
   const pathname = usePathname();

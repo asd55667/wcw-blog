@@ -15,7 +15,7 @@ import { siteConfig } from "@/config/site";
 import { getTableOfContents } from "@/lib/toc";
 import { absoluteUrl, cn } from "@/lib/utils";
 import { badgeVariants } from "@/registry/new-york/ui/badge";
-import { allDocs } from "contentlayer/generated";
+import { allPosts } from "contentlayer/generated";
 import { capitalize } from "lodash";
 
 type BaseParams = {
@@ -30,7 +30,7 @@ async function getDocFromParams({ params }: DocPageProps) {
   const { slug } = await params;
 
   const slugs = slug?.join("/") || "";
-  const doc = allDocs.find((doc) => doc.slugAsParams === slugs);
+  const doc = allPosts.find((doc) => doc.slugAsParams === slugs);
 
   if (!doc) {
     return null;
@@ -82,10 +82,10 @@ export async function generateStaticParams(): Promise<
     process.env.PLATFORM === "cloudflare pages" ||
     process.env.PLATFORM === "github pages"
   ) {
-    return routes.docs;
+    return routes.posts;
   }
 
-  return allDocs.map((doc) =>
+  return allPosts.map((doc) =>
     Promise.resolve({
       slug: doc.slugAsParams.split("/"),
     }),

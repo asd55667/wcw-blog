@@ -59,6 +59,7 @@
       ".contentlayer",
       "contentlayer.config.ts",
       "src/__registry__",
+      "src/registry",
       "src/lib/rehype-npm-command.ts",
       "src/lib/rehype-component.ts",
       "src/scripts"

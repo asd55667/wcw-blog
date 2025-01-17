@@ -3,10 +3,10 @@ import type { MainNavItem, SidebarNavItem } from "types/nav";
 export interface DocsConfig {
   mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
-  name: "docs";
+  name: "posts";
 }
 
-const name: DocsConfig["name"] = "docs";
+const name: DocsConfig["name"] = "posts";
 
 // // TODO: this behavior will case route direct from /docs/theming to /docs/docs/theming
 // const sidebarNavItems: SidebarNavItem[] = staticRoutes.docs
@@ -20,27 +20,17 @@ const name: DocsConfig["name"] = "docs";
 export const docsConfig: DocsConfig = {
   mainNav: [
     {
-      title: "Project",
+      title: "Blogs",
       href: `/${name}`,
     },
   ],
   sidebarNav: [
     {
-      title: "Getting Started",
+      title: "Blogs",
       items: [
         {
-          title: "Introduction",
-          href: "/docs",
-          items: [],
-        },
-        {
-          title: "Theming",
-          href: "/docs/theming",
-          items: [],
-        },
-        {
-          title: "Dark mode",
-          href: "/docs/dark-mode",
+          title: "Blogs",
+          href: `/${name}`,
           items: [],
         },
       ],

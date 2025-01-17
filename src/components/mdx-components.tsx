@@ -1,9 +1,9 @@
 // @ts-nocheck
 "use client";
 
+import { useMDXComponent } from "next-contentlayer2/hooks";
 import Image from "next/image";
 import Link from "next/link";
-import { useMDXComponent } from "next-contentlayer2/hooks";
 import type * as React from "react";
 
 import { Callout } from "@/components/callout";
