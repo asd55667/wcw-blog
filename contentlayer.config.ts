@@ -41,9 +41,93 @@ const LinksProperties = defineNestedType(() => ({
   },
 }));
 
-export const Doc = defineDocumentType(() => ({
+export const Blog = defineDocumentType(() => ({
   name: capitalize(docsConfig.name),
   filePathPattern: `${docsConfig.name}/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: {
+      type: "string",
+      required: true,
+    },
+    description: {
+      type: "string",
+      required: true,
+    },
+    date: {
+      type: "string",
+      required: false,
+    },
+    published: {
+      type: "boolean",
+      default: true,
+    },
+    links: {
+      type: "nested",
+      of: LinksProperties,
+    },
+    featured: {
+      type: "boolean",
+      default: false,
+      required: false,
+    },
+    component: {
+      type: "boolean",
+      default: false,
+      required: false,
+    },
+    toc: {
+      type: "boolean",
+      default: true,
+      required: false,
+    },
+  },
+  computedFields: computedFields as any,
+}));
+
+export const Category = defineDocumentType(() => ({
+  name: "Category",
+  filePathPattern: `categories/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: {
+      type: "string",
+      required: true,
+    },
+    description: {
+      type: "string",
+      required: true,
+    },
+    published: {
+      type: "boolean",
+      default: true,
+    },
+    links: {
+      type: "nested",
+      of: LinksProperties,
+    },
+    featured: {
+      type: "boolean",
+      default: false,
+      required: false,
+    },
+    component: {
+      type: "boolean",
+      default: false,
+      required: false,
+    },
+    toc: {
+      type: "boolean",
+      default: true,
+      required: false,
+    },
+  },
+  computedFields: computedFields as any,
+}));
+
+export const Archive = defineDocumentType(() => ({
+  name: "Archive",
+  filePathPattern: `archive/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: {
@@ -83,7 +167,7 @@ export const Doc = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: "./content",
-  documentTypes: [Doc],
+  documentTypes: [Blog, Category, Archive],
   mdx: {
     remarkPlugins: [remarkGfm, codeImport as Pluggable],
     rehypePlugins: [

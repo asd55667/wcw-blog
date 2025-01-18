@@ -58,7 +58,7 @@ export function Category({
         <li key={category.key} className="mt-0">
           <div className="flex items-center gap-2">
             <Link
-              href={{ pathname: `${scope}/${category.key}/1` }}
+              href={{ pathname: `${scope}/${category.key}` }}
               className={cn(
                 "inline-block no-underline transition-colors hover:text-foreground",
                 "text-muted-foreground",
@@ -107,7 +107,7 @@ export function Archives() {
                 <div className="flex items-center gap-2">
                   <Link
                     href={{
-                      pathname: `/archive/${archive.year}/${month.month + 1}/1`,
+                      pathname: `/archive/${archive.year}/${month.month + 1}`,
                     }}
                     className={cn(
                       "inline-block no-underline transition-colors hover:text-foreground",

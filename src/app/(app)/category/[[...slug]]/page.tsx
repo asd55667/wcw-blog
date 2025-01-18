@@ -10,13 +10,11 @@ import { Mdx } from "@/components/mdx-components";
 // import { OpenInV0Cta } from "@/components/open-in-v0-cta";
 import { DocsPager } from "@/components/pager";
 import { DashboardTableOfContents } from "@/components/toc";
-import { docsConfig } from "@/config/docs";
 import { siteConfig } from "@/config/site";
 import { getTableOfContents } from "@/lib/toc";
 import { absoluteUrl, cn } from "@/lib/utils";
 import { badgeVariants } from "@/registry/new-york/ui/badge";
-import { allPosts } from "contentlayer/generated";
-import { capitalize } from "lodash";
+import { allCategories } from "contentlayer/generated";
 
 type BaseParams = {
   slug: string[];
@@ -30,7 +28,7 @@ async function getDocFromParams({ params }: DocPageProps) {
   const { slug } = await params;
 
   const slugs = slug?.join("/") || "";
-  const doc = allPosts.find((doc) => doc.slugAsParams === slugs);
+  const doc = allCategories.find((doc) => doc.slugAsParams === slugs);
 
   if (!doc) {
     return null;
@@ -82,10 +80,10 @@ export async function generateStaticParams(): Promise<
     process.env.PLATFORM === "cloudflare pages" ||
     process.env.PLATFORM === "github pages"
   ) {
-    return routes.posts;
+    return routes.categories;
   }
 
-  return allPosts.map((doc) =>
+  return allCategories.map((doc) =>
     Promise.resolve({
       slug: doc.slugAsParams.split("/"),
     }),
@@ -104,9 +102,9 @@ export default async function DocPage({ params }: DocPageProps) {
   return (
     <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
       <div className="mx-auto w-full min-w-0 max-w-2xl">
-        {doc.title !== capitalize(docsConfig.name) && (
+        {doc.title !== "Category" && (
           <div className="mb-4 flex items-center space-x-1 text-sm leading-none text-muted-foreground">
-            <div className="truncate">{capitalize(docsConfig.name)}</div>
+            <div className="truncate">Category</div>
             <ChevronRight className="h-3.5 w-3.5" />
             <div className="text-foreground">{doc.title}</div>
           </div>
@@ -130,7 +128,7 @@ export default async function DocPage({ params }: DocPageProps) {
                 rel="noreferrer"
                 className={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
               >
-                {capitalize(docsConfig.name)}
+                Category
                 <ExternalLink className="h-3 w-3" />
               </Link>
             )}

@@ -32,6 +32,30 @@ export function MainNav() {
         >
           {capitalize(docsConfig.name)}
         </Link>
+
+        <Link
+          href={{ pathname: "/category" }}
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname?.startsWith("/category")
+              ? "text-foreground"
+              : "text-foreground/80",
+          )}
+        >
+          Category
+        </Link>
+
+        <Link
+          href={{ pathname: "/archive" }}
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname?.startsWith("/archive")
+              ? "text-foreground"
+              : "text-foreground/80",
+          )}
+        >
+          Archive
+        </Link>
       </nav>
     </div>
   );
