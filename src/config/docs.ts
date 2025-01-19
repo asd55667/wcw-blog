@@ -1,3 +1,4 @@
+import allNav from "@/../content/doc-nav.json";
 import staticRoutes from "@/__registry__/static-routes.json";
 import type { MainNavItem, SidebarNavItem } from "types/nav";
 export interface DocsConfig {
@@ -20,21 +21,19 @@ const name: DocsConfig["name"] = "posts";
 export const docsConfig: DocsConfig = {
   mainNav: [
     {
-      title: "Blogs",
+      title: "Posts",
       href: `/${name}`,
     },
-  ],
-  sidebarNav: [
     {
-      title: "Blogs",
-      items: [
-        {
-          title: "Blogs",
-          href: `/${name}`,
-          items: [],
-        },
-      ],
+      title: "Category",
+      href: "/category",
     },
+    {
+      title: "Archive",
+      href: "/archive",
+    },
+    ...allNav,
   ],
+  sidebarNav: [],
   name,
 };

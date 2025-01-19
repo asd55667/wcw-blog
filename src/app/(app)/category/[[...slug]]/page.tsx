@@ -80,7 +80,7 @@ export async function generateStaticParams(): Promise<
     process.env.PLATFORM === "cloudflare pages" ||
     process.env.PLATFORM === "github pages"
   ) {
-    return routes.categories;
+    return routes.category;
   }
 
   return allCategories.map((doc) =>

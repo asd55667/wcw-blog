@@ -87,7 +87,7 @@ export const Blog = defineDocumentType(() => ({
 
 export const Category = defineDocumentType(() => ({
   name: "Category",
-  filePathPattern: `categories/**/*.mdx`,
+  filePathPattern: `category/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: {
