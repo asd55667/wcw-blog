@@ -3,8 +3,6 @@
 import { LoaderIcon } from "lucide-react";
 import useSWR from "swr";
 
-import { PostPreview } from "@/components/blog/post-preview";
-
 import {
   AboutMe,
   Archives,
@@ -12,6 +10,7 @@ import {
   Category,
   SkeletonGroup,
 } from "@/components/blog/page-aside";
+import { PostPreview } from "@/components/blog/post-preview";
 import type { ICategory, IPost } from "@/types/blog";
 import { fetcher } from "@/utils/fetcher";
 

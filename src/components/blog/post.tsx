@@ -1,10 +1,10 @@
 import { format } from "date-fns";
+import Markdown from "react-markdown";
 import Balance from "react-wrap-balancer";
 
 import { Badge } from "@/registry/new-york/ui/badge";
 import type { IPost } from "@/types/blog";
 import { cn } from "@/utils";
-import Markdown from "react-markdown";
 
 /**
  *

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type React from "react";
 import useSWR from "swr";
 
+import pkg from "@/../package.json";
 import {
   Card,
   CardContent,
@@ -9,8 +10,6 @@ import {
   CardTitle,
 } from "@/registry/new-york/ui/card";
 import { Skeleton } from "@/registry/new-york/ui/skeleton";
-
-import pkg from "@/../package.json";
 import type { IArchive, ICategory } from "@/types/blog";
 import { cn } from "@/utils";
 import { fetcher } from "@/utils/fetcher";

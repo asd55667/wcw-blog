@@ -1,5 +1,5 @@
-import path from "path";
 import { type Dirent, existsSync, promises as fs } from "fs";
+import path from "path";
 
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
