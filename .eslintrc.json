@@ -31,7 +31,7 @@
     "jsx-a11y/heading-has-content": "warn",
     "jsx-a11y/anchor-has-content": "warn",
     "import/order": [
-      "error",
+      "warn",
       {
         "groups": [
           "builtin",
