@@ -15,8 +15,8 @@ import { siteConfig } from "@/config/site";
 import { getTableOfContents } from "@/lib/toc";
 import { absoluteUrl, cn } from "@/lib/utils";
 import { badgeVariants } from "@/registry/new-york/ui/badge";
-import { allPosts } from "contentlayer/generated";
-import { capitalize } from "lodash";
+import { capitalize } from "@/utils";
+import { allDocs } from "contentlayer/generated";
 
 type BaseParams = {
   slug: string[];

@@ -1,6 +1,7 @@
-import { docsConfig } from "@/config/docs";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+
+import { docsConfig } from "@/config/docs";
 
 export function Announcement() {
   return (
