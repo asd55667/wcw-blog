@@ -1,7 +1,7 @@
 // import staticRoutes from "@/__registry__/static-routes.json";
 import type { MainNavItem, SidebarNavItem } from "types/nav";
 
-import allNav from "../../content/doc-nav.json";
+import allNav from "../../content/doc-nav.json" with { type: "json" };
 export interface DocsConfig {
   mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
@@ -33,8 +33,7 @@ export const docsConfig: DocsConfig = {
       title: "Archive",
       href: "/archive",
     },
-    ...allNav,
   ],
-  sidebarNav: [],
+  sidebarNav: [...(allNav as SidebarNavItem[])],
   name,
 };
