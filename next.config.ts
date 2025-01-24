@@ -22,6 +22,8 @@ function resolveConfig(platform: typeof process.env.PLATFORM): NextConfig {
 
   let basePath: NextConfig['basePath'] = undefined
 
+  let assetPrefix: NextConfig['assetPrefix'] = undefined
+
   // ssg
   if (platform === "github pages" || platform === "cloudflare pages") {
     images = {
@@ -32,6 +34,7 @@ function resolveConfig(platform: typeof process.env.PLATFORM): NextConfig {
 
   if (platform === 'github pages') {
     basePath = process.env.NODE_ENV === "production" ? `/${pkg.name}` : undefined;
+    assetPrefix = process.env.NODE_ENV === "production" ? `/${pkg.name}/` : undefined;
   }
 
   if (platform === 'vps') {
@@ -80,6 +83,7 @@ function resolveConfig(platform: typeof process.env.PLATFORM): NextConfig {
     },
     output,
     basePath,
+    assetPrefix
   }) as NextConfig
 }
 
