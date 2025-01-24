@@ -43,6 +43,7 @@ function resolveConfig(platform: typeof process.env.PLATFORM): NextConfig {
 
   return ({
     env: {
+      NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
       PLATFORM: platform,
     },
     reactStrictMode: true,
