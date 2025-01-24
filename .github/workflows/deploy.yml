@@ -73,14 +73,14 @@ jobs:
       - name: MDX Migration
         run: pnpm run migration:mdx
 
+      - name: Mock API
+        run: pnpm run mock
+
       - name: Build Registry
         run: pnpm run build:registry
 
       - name: Build Routes
         run: pnpm run build:routes
-
-      - name: Build Docs
-        run: pnpm run build:docs
 
       - name: Build with Next.js
         run: pnpm run build

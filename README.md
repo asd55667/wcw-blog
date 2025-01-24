@@ -1,39 +1,17 @@
-This is a Next.js template simply based on [ui.shadcn.com](https://ui.shadcn.com/).
+This is a blog site based on [nextjs-template](https://github.com/asd55667/nextjs-template)
 
-You can use this template as a starting point for your next project.
+Blog content hoisted on github repo [blogs](https://github.com/asd55667/blogs).
 
-## Tech Stack
-- [Next.js@15](https://nextjs.org/)
-- [Shadcn UI](https://ui.shadcn.com/)
-- [Contentlayer](https://contentlayer.dev/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [E2E Testing with Playwright](https://playwright.dev/)
+## Deployed platforms
 
-Biome is used for linting and formatting locally.
+### [github pages](asd55667.github.io/wcw-blog)
 
-## Change Doc Route for SSG
-
-rename the docs directory in `src/app/(app)/docs`
-rename the docs directory in `content/docs`
-rename the name field of docsConfig in `src/config/docs.ts`;
-rename `allDocs` imported from `contentlayer/generated`
-
-For further usage of blogs, stories from this template.
-
-## Deploy to multiple platforms
-
-### [github pages](asd55667.github.io/nextjs-template)
-
-### [cloudflare pages](nextjs-template.wuchengwei.com)
+### [cloudflare pages](blog.wuchengwei.com)
 
 > Build command
 
 ``` shell
-npx tsx --tsconfig ./tsconfig.scripts.json ./src/scripts/build-registry.mts && npx contentlayer2 build && npx next build
+git clone https://github.com/asd55667/blogs --depth 1 && npx blog-migration -i blogs -t mdx -o content && npx blog-migration -i blogs -t api -o public/api && npx tsx --tsconfig ./tsconfig.scripts.json ./src/scripts/build-registry.mts && npx tsx --tsconfig ./tsconfig.scripts.json ./src/scripts/build-static-route.mts && npx next build
 ```
 
-## Screenshot
-![](/tests/e2e/homepage.spec.ts-snapshots/homepage-chromium-darwin.png)
-
-[Try it in stackblitz](https://stackblitz.com/github/asd55667/nextjs-template)
+[Try it in stackblitz](https://stackblitz.com/github/asd55667/wcw-blog)

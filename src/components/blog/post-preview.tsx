@@ -15,7 +15,7 @@ import type { IPost } from "@/types/blog";
  */
 export function PostPreview({ post }: { post: IPost }) {
   return (
-    <div className="md:w-[720px] w-full">
+    <div>
       <h2 className="scroll-m-20 text-4xl font-bold tracking-tight">
         {post.title}
       </h2>
@@ -28,15 +28,16 @@ export function PostPreview({ post }: { post: IPost }) {
         href={{ pathname: `/posts/${post.id}` }}
         target="_self"
         rel="noreferrer"
-        className="hover:text-accent-foreground"
       >
-        <span className="text-sm italic">Read Full Content »</span>
+        <span className="w-full text-sm italic hover:text-foreground/80">
+          Read Full Content »
+        </span>
       </Link>
 
       <Separator className="my-2" />
 
-      <div className="flex gap-2 justify-end">
-        Posted by
+      <div className="flex gap-2 justify-end italic text-muted-foreground">
+        Last updated by
         <span>{post.author}</span>
         on
         <span>{format(post.created, "MMMM dd, yyyy")}</span>

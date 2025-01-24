@@ -116,7 +116,7 @@ export function Archives() {
                     {archive.year} /{" "}
                     {month.month < 9 ? `0${month.month + 1}` : month.month}
                   </Link>
-                  <div>({month.posts.length})</div>
+                  <div>({month.total})</div>
                 </div>
               </li>
             ))}

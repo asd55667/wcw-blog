@@ -29,6 +29,10 @@ export default function IndexPage() {
               <Preview />
 
               <div className="flex-col gap-8 hidden md:flex w-1/5">
+                Tags to display TODO:
+              </div>
+
+              <div className="flex-col gap-8 hidden md:flex w-1/5">
                 <AsideBlock title="About me">
                   <AboutMe />
                 </AsideBlock>

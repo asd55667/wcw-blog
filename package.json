@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/asd55667/blog"
+    "url": "https://github.com/asd55667/wcw-blog"
   },
   "scripts": {
     "dev": "next dev",
@@ -23,6 +23,7 @@
     "build:docs": "contentlayer2 build",
     "build:routes": "tsx --tsconfig ./tsconfig.scripts.json ./src/scripts/build-static-route.mts",
     "build:registry": "tsx --tsconfig ./tsconfig.scripts.json ./src/scripts/build-registry.mts",
+    "mock": "npx blog-migration -i blogs -t api -o public/api",
     "migration:mdx": "npx blog-migration -i blogs -t mdx -o content",
     "test:e2e": "playwright test",
     "test:e2e:ci": "playwright test --config=playwright.ci.config.ts",
@@ -106,7 +107,7 @@
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "@typescript-eslint/eslint-plugin": "^8.19.0",
-    "@wcw2025/blog-migration": "0.1.13",
+    "@wcw2025/blog-migration": "0.1.14",
     "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.6",
     "eslint": "^9.17.0",
@@ -153,7 +154,7 @@
     ]
   },
   "stackblitz": {
-    "startCommand": "pnpm install && pnpm run build:registry && pnpm run build:docs && pnpm run dev",
+    "startCommand": "git clone https://github.com/asd55667/blogs --depth 1 && && pnpm run mock && pnpm run migration:mdx && pnpm install && pnpm run build:registry && pnpm run build:routes && pnpm run dev",
     "env": {
       "STACKBLITZ": "true"
     }
