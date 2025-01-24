@@ -1,4 +1,4 @@
-import pkg from "@/../package.json";
+// import pkg from "@/../package.json";
 
 export const fetcher = (input: string | URL | Request, init?: RequestInit) => {
   if (typeof input === "string") {
