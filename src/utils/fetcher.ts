@@ -3,11 +3,6 @@ import pkg from "@/../package.json";
 export const fetcher = (input: string | URL | Request, init?: RequestInit) => {
   if (typeof input === "string") {
     let url = input;
-    console.log("process.env.PLATFORM", process.env.PLATFORM);
-    console.log(
-      "process.env.NEXT_PUBLIC_API_URL",
-      process.env.NEXT_PUBLIC_API_URL,
-    );
     if (process.env.NEXT_PUBLIC_API_URL) {
       url = `${process.env.NEXT_PUBLIC_API_URL}${url}`;
     } else if (process.env.PLATFORM === "github pages") {

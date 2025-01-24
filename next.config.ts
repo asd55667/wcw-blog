@@ -42,6 +42,9 @@ function resolveConfig(platform: typeof process.env.PLATFORM): NextConfig {
   }
 
   return ({
+    env: {
+      PLATFORM: platform,
+    },
     reactStrictMode: true,
     experimental: {
       typedRoutes: true,
