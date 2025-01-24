@@ -9,6 +9,10 @@ on:
   push:
     branches: ["shadcn"]
 
+  repository_dispatch:
+    types: [trigger_action]
+
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
