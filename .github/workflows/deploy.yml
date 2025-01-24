@@ -86,6 +86,7 @@ jobs:
         run: pnpm run build
         env:
           PLATFORM: "github pages"
+          NEXT_PUBLIC_API_URL: "wcw-blog"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
