@@ -99,14 +99,14 @@ export function Archives() {
   return (
     <ul className="m-0 list-none">
       {list.map((archive) => (
-        <li key={archive.year} className={cn("mt-0 pt-2")}>
+        <div key={archive.year}>
           <ul className="m-0 list-none">
             {archive.months.map((month) => (
-              <li key={month.month} className={cn("mt-0 pt-2")}>
+              <li key={month.month} className="mt-0 pt-2">
                 <div className="flex items-center gap-2">
                   <Link
                     href={{
-                      pathname: `/archive/${archive.year}/${month.month + 1}`,
+                      pathname: `/archive/${archive.year}/${month.month}`,
                     }}
                     className={cn(
                       "inline-block no-underline transition-colors hover:text-foreground",
@@ -114,14 +114,14 @@ export function Archives() {
                     )}
                   >
                     {archive.year} /{" "}
-                    {month.month < 9 ? `0${month.month + 1}` : month.month}
+                    {month.month < 9 ? `0${month.month}` : month.month}
                   </Link>
                   <div>({month.total})</div>
                 </div>
               </li>
             ))}
           </ul>
-        </li>
+        </div>
       ))}
     </ul>
   );
