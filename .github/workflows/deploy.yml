@@ -74,7 +74,7 @@ jobs:
         run: pnpm run migration:mdx
 
       - name: Mock API
-        run: npx blog-migration -i blogs -t api -o ../public/api
+        run: pnpm run mock
 
       - name: Build Registry
         run: pnpm run build:registry
