@@ -226,8 +226,8 @@ importers:
         specifier: ^8.19.0
         version: 8.19.0(@typescript-eslint/parser@8.19.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2)
       '@wcw2025/blog-migration':
-        specifier: 0.1.14
-        version: 0.1.14
+        specifier: 0.1.15
+        version: 0.1.15
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.49)
@@ -2424,8 +2424,8 @@ packages:
   '@ungap/structured-clone@1.2.1':
     resolution: {integrity: sha512-fEzPV3hSkSMltkw152tJKNARhOupqbH96MZWyRjNaYZOMIzbrTeQDG+MTc6Mr2pgzFQzFxAfmhGDNP5QK++2ZA==}
 
-  '@wcw2025/blog-migration@0.1.14':
-    resolution: {integrity: sha512-+3p2C8ekFCVMX8DJQx8X7+6d46JxBVhc5UAPIvWG7HlB15e5lLEpYU4aFFjVKFGVhS7hqUP86GP5Y+SK7FYq2w==}
+  '@wcw2025/blog-migration@0.1.15':
+    resolution: {integrity: sha512-IIFiaM91ukPlZwZTPxgzfmDZ5MjyvQ8UodnPqBML3c2IwbgZNz67YExbD/se8Ni0i7kNiZv2o+BFuu3Py7eVfQ==}
     hasBin: true
 
   JSONStream@1.3.5:
@@ -8095,7 +8095,7 @@ snapshots:
 
   '@ungap/structured-clone@1.2.1': {}
 
-  '@wcw2025/blog-migration@0.1.14': {}
+  '@wcw2025/blog-migration@0.1.15': {}
 
   JSONStream@1.3.5:
     dependencies:
