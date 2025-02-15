@@ -1,0 +1,49 @@
+---
+title: Deployment of this Nextjs Template
+description: Deploying your Next.js app to multiple platforms with SSG support.
+---
+
+## deploy to multi platforms with SSG
+
+To make same code deployed in these three platforms below, I have done some compat logic in `next.config.js` with environment variable.
+
+See [detail](https://github.com/asd55667/nextjs-template/blob/main/next.config.ts)
+
+### cloudflare pages
+
+Build command
+
+```sh
+npx tsx --tsconfig ./tsconfig.scripts.json ./src/scripts/build-registry.mts && npx tsx --tsconfig ./tsconfig.scripts.json ./src/scripts/build-static-route.mts && npx next build
+```
+
+**Environment Variable**
+
+- NODE_VERSION=20.18.0
+- PLATFORM=cloudflare pages
+
+
+### github pages
+
+<Callout className="mt-4">
+I don't know why `src/components/icons.tsx` file broke my github workflow, just rename it and then the problem fixed.
+</Callout>
+
+rename `src/components/icons.tsx` to another name, e.g. `src/components/my-icons.tsx`
+
+**Environment Variable**
+
+`PLATFORM=github pages` has been written in `yml` file of github workflow, there is nothing has to be done.
+
+
+### vercel
+
+Build command
+
+```sh
+tsx --tsconfig ./tsconfig.scripts.json ./src/scripts/build-registry.mts && tsx --tsconfig ./tsconfig.scripts.json ./src/scripts/build-static-route.mts && npx next build
+```
+
+**Environment Variable**
+
+PLATFORM=vercel

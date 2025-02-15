@@ -13,8 +13,8 @@
     "url": "https://github.com/asd55667/wcw-blog"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "pnpm run build:registry && pnpm run build:routes && next dev",
+    "build": "pnpm run build:registry && pnpm run build:routes && next build",
     "start": "next start",
     "lint": "next lint . --fix",
     "lint:biome": "biome lint . --fix",
