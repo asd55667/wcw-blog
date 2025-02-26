@@ -11,7 +11,7 @@ import {
 } from "@/registry/new-york/ui/card";
 import { Skeleton } from "@/registry/new-york/ui/skeleton";
 import type { IArchive, ICategory } from "@/types/blog";
-import { cn } from "@/utils";
+import { cn } from "@/lib/utils";
 import { fetcher } from "@/utils/fetcher";
 
 export interface IAsideBlock {
