@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import type { DocsConfig } from "@/config/docs";
 import { cn } from "@/lib/utils";
 import type { SidebarNavItem } from "types/nav";
 
-export function DocsNav({ config }: { config: DocsConfig }) {
+export function DocsNav({
+  config,
+}: { config: { sidebarNav: SidebarNavItem[] } }) {
   const pathname = usePathname();
 
   const items = config.sidebarNav;

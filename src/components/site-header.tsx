@@ -7,6 +7,7 @@ import { MobileNav } from "@/components/mobile-nav";
 import { ModeSwitcher } from "@/components/mode-switcher";
 import { siteConfig } from "@/config/site";
 import { Button } from "@/registry/new-york/ui/button";
+import pkg from "@/../package.json";
 
 export function SiteHeader() {
   return (
@@ -20,16 +21,18 @@ export function SiteHeader() {
               <CommandMenu />
             </div>
             <nav className="flex items-center gap-0.5">
-              <Button variant="ghost" size="icon" className="h-8 w-8 px-0">
-                <Link
-                  href={{ pathname: siteConfig.links.github }}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Icons.gitHub className="h-4 w-4" />
-                  <span className="sr-only">GitHub</span>
-                </Link>
-              </Button>
+              {!pkg.private ? (
+                <Button variant="ghost" size="icon" className="h-8 w-8 px-0">
+                  <Link
+                    href={{ pathname: siteConfig.links.github }}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Icons.gitHub className="h-4 w-4" />
+                    <span className="sr-only">GitHub</span>
+                  </Link>
+                </Button>
+              ) : null}
               <ModeSwitcher />
             </nav>
           </div>

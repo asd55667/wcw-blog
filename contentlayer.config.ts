@@ -13,7 +13,7 @@ import { visit } from "unist-util-visit";
 import type { Pluggable, Plugin } from "unified";
 
 import { docsConfig } from "./src/config/docs";
-import { capitalize } from "./src/utils";
+import { capitalize } from "./src/lib/utils";
 import { rehypeComponent } from "./src/lib/rehype-component";
 import { rehypeNpmCommand } from "./src/lib/rehype-npm-command";
 

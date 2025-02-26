@@ -15,7 +15,7 @@ import { siteConfig } from "@/config/site";
 import { getTableOfContents } from "@/lib/toc";
 import { absoluteUrl, cn } from "@/lib/utils";
 import { badgeVariants } from "@/registry/new-york/ui/badge";
-import { capitalize } from "@/utils";
+import { capitalize } from "@/lib/utils";
 import { allPosts } from "contentlayer/generated";
 
 type BaseParams = {

@@ -16,16 +16,21 @@ export function SiteFooter() {
             >
               {pkg.author.name}
             </a>
-            . The source code is available on{" "}
-            <a
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              GitHub
-            </a>
             .
+            {!pkg.private ? (
+              <>
+                The source code is available on{" "}
+                <a
+                  href={siteConfig.links.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-medium underline underline-offset-4"
+                >
+                  GitHub
+                </a>
+                .
+              </>
+            ) : null}
           </div>
         </div>
       </div>

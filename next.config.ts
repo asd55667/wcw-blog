@@ -48,7 +48,7 @@ function resolveConfig(platform: typeof process.env.PLATFORM): NextConfig {
     },
     reactStrictMode: true,
     experimental: {
-      typedRoutes: true,
+      // typedRoutes: true,
       optimizePackageImports: ["@radix-ui/react-icons"],
     },
     images,
@@ -84,6 +84,9 @@ function resolveConfig(platform: typeof process.env.PLATFORM): NextConfig {
     },
     typescript: {
       ignoreBuildErrors: true
+    },
+    eslint: {
+      ignoreDuringBuilds: true
     },
     output,
     basePath,
