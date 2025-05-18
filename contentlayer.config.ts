@@ -58,6 +58,15 @@ export const Blog = defineDocumentType(() => ({
       type: "string",
       required: false,
     },
+    created: {
+      type: "string",
+      required: false,
+    },
+    tags: {
+      type: "list",
+      of: { type: "string" },
+      required: false,
+    },
     published: {
       type: "boolean",
       default: true,

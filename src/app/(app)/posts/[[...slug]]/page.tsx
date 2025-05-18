@@ -121,6 +121,7 @@ export default async function DocPage({ params }: DocPageProps) {
             </p>
           )}
         </div>
+
         {doc.links ? (
           <div className="flex items-center space-x-2 pt-4">
             {doc.links?.doc && (
@@ -147,11 +148,40 @@ export default async function DocPage({ params }: DocPageProps) {
             )}
           </div>
         ) : null}
-        <div className="pb-12 pt-8">
+        <div className="pb-12 pt-4">
           <Mdx code={doc.body.code} />
+
+          <div className="flex justify-between border-t pt-4 mt-4">
+            {doc.tags && doc.tags.length > 0 && (
+              <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
+                {doc.tags.map((tag) => (
+                  <Link
+                    key={tag}
+                    href={`/tags/${tag}`}
+                    className={cn(
+                      badgeVariants({ variant: "secondary" }),
+                      "no-underline hover:bg-primary hover:text-primary-foreground transition-colors",
+                    )}
+                  >
+                    {tag}
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            {(doc.date || doc.created) && (
+              <div className="mt-4 text-sm text-muted-foreground flex-none">
+                {doc.date ? "Updated at " : "Created at "}
+                <time dateTime={doc.date || doc.created}>
+                  {doc.date || doc.created}
+                </time>
+              </div>
+            )}
+          </div>
         </div>
         <DocsPager doc={doc} />
       </div>
+
       <div className="hidden text-sm xl:block">
         <div className="sticky top-20 -mt-6 h-[calc(100vh-3.5rem)] pt-4">
           <div className="no-scrollbar h-full overflow-auto pb-10">
