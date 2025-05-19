@@ -1,0 +1,33 @@
+version: 2
+updates:
+  # Enable version updates for npm (pnpm)
+  - package-ecosystem: "npm"
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "daily"
+    # Add reviewers
+    # reviewers:
+    #  - "your-github-username"
+    # Add assignees
+    # assignees:
+    #  - "your-github-username"
+    # Add labels
+    # labels:
+    #  - "npm"
+    #  - "dependencies"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    # Add reviewers
+    # reviewers:
+    #  - "your-github-username"
+    # Add assignees
+    # assignees:
+    #  - "your-github-username"
+    # Add labels
+    # labels:
+    #  - "github_actions"
+    #  - "dependencies"
