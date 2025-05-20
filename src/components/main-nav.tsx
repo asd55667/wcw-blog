@@ -56,6 +56,18 @@ export function MainNav() {
         >
           Archive
         </Link>
+
+        <Link
+          href={{ pathname: "/tag" }}
+          className={cn(
+            "transition-colors hover:text-foreground/80",
+            pathname?.startsWith("/tag")
+              ? "text-foreground"
+              : "text-foreground/80",
+          )}
+        >
+          Tag
+        </Link>
       </nav>
     </div>
   );

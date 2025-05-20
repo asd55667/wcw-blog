@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/registry/new-york/ui/card";
 import { Skeleton } from "@/registry/new-york/ui/skeleton";
-import type { IArchive, ICategory } from "@/types/blog";
+import type { IArchive, ICategory, ITag } from "@/types/blog";
 import { cn } from "@/lib/utils";
 import { fetcher } from "@/utils/fetcher";
 
@@ -134,5 +134,30 @@ export function SkeletonGroup({ length }: { length: number }) {
         <Skeleton className="h-6 w-full" key={index} />
       ))}
     </div>
+  );
+}
+
+interface ITagsProps {
+  tags: ITag[];
+  scope?: string;
+}
+
+export function Tags({ tags, scope = "/tag" }: ITagsProps) {
+  return (
+    <ul className={cn("m-0 list-none flex flex-wrap gap-2")}>
+      {tags.map((tag) => (
+        <li key={tag.name} className="mt-0">
+          <Link
+            href={{ pathname: `${scope}/${tag.name.replace(/\s+/g, "-")}` }}
+            className={cn(
+              "inline-block no-underline transition-colors hover:text-foreground px-2 py-1 rounded-md text-sm",
+              "bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground",
+            )}
+          >
+            {tag.name} ({tag.count})
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }

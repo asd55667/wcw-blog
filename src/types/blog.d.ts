@@ -67,3 +67,9 @@ export interface ICategory {
   total: number;
   children: ICategory[];
 }
+
+export interface ITag {
+  name: string;
+  count: number;
+  // slug?: string;
+}

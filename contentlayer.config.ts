@@ -174,9 +174,49 @@ export const Archive = defineDocumentType(() => ({
   computedFields: computedFields as any,
 }));
 
+export const Tag = defineDocumentType(() => ({
+  name: "Tag",
+  filePathPattern: `tag/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: {
+      type: "string",
+      required: true,
+    },
+    description: {
+      type: "string",
+      required: true,
+    },
+    published: {
+      type: "boolean",
+      default: true,
+    },
+    links: {
+      type: "nested",
+      of: LinksProperties,
+    },
+    featured: {
+      type: "boolean",
+      default: false,
+      required: false,
+    },
+    component: {
+      type: "boolean",
+      default: false,
+      required: false,
+    },
+    toc: {
+      type: "boolean",
+      default: true,
+      required: false,
+    },
+  },
+  computedFields: computedFields as any,
+}));
+
 export default makeSource({
   contentDirPath: "./content",
-  documentTypes: [Blog, Category, Archive],
+  documentTypes: [Blog, Category, Archive, Tag],
   mdx: {
     remarkPlugins: [remarkGfm, codeImport as Pluggable],
     rehypePlugins: [

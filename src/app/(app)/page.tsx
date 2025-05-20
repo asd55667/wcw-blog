@@ -9,14 +9,17 @@ import {
   AsideBlock,
   Category,
   SkeletonGroup,
+  Tags,
 } from "@/components/blog/page-aside";
 import { PostPreview } from "@/components/blog/post-preview";
-import type { ICategory, IPost } from "@/types/blog";
+import type { ICategory, IPost, ITag } from "@/types/blog";
 import { fetcher } from "@/utils/fetcher";
 
 export default function IndexPage() {
-  const { data: categories, isLoading } = useSWR<ICategory>(
-    "/api/category/list",
+  const { data: categories, isLoading: isLoadingCategories } =
+    useSWR<ICategory>("/api/category/list", fetcher);
+  const { data: tags, isLoading: isLoadingTags } = useSWR<ITag[]>(
+    "/api/tag/list",
     fetcher,
   );
 
@@ -25,20 +28,16 @@ export default function IndexPage() {
       <div className="border-grid border-b">
         <div className="container-wrapper">
           <div className="container py-4">
-            <div className="[&>a:first-child]:text-primary flex gap-12 pt-12 px-6">
+            <div className="[&>a:first-child]:text-primary flex flex-wrap lg:flex-nowrap gap-12 pt-12 px-12">
               <Preview />
 
-              <div className="flex-col gap-8 hidden md:flex w-1/5">
-                Tags to display TODO:
-              </div>
-
-              <div className="flex-col gap-8 hidden md:flex w-1/5">
+              <aside className="w-full lg:w-1/4 flex flex-col gap-8">
                 <AsideBlock title="About me">
                   <AboutMe />
                 </AsideBlock>
 
                 <AsideBlock title="Categories">
-                  {isLoading ? (
+                  {isLoadingCategories ? (
                     <SkeletonGroup length={5} />
                   ) : !categories?.children.length ? (
                     <div>empty</div>
@@ -47,10 +46,20 @@ export default function IndexPage() {
                   )}
                 </AsideBlock>
 
+                <AsideBlock title="Tags">
+                  {isLoadingTags ? (
+                    <SkeletonGroup length={5} />
+                  ) : !tags?.length ? (
+                    <div>No tags</div>
+                  ) : (
+                    <Tags tags={tags} />
+                  )}
+                </AsideBlock>
+
                 <AsideBlock title="Archives">
                   <Archives />
                 </AsideBlock>
-              </div>
+              </aside>
             </div>
           </div>
         </div>
@@ -79,6 +88,8 @@ function Preview() {
   }
 
   return (
-    <div className="flex flex-col flex-grow gap-6 overflow-auto">{content}</div>
+    <div className="flex flex-col flex-grow gap-6 overflow-auto w-full lg:w-3/4">
+      {content}
+    </div>
   );
 }
