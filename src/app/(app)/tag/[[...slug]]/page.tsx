@@ -3,26 +3,27 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import "@/styles/mdx.css";
+import Balancer from "react-wrap-balancer";
 
 import routes from "@/__registry__/static-routes.json";
 import { Mdx } from "@/components/mdx-components";
 import { DocsPager } from "@/components/pager";
+import { DashboardTableOfContents } from "@/components/toc";
 import { siteConfig } from "@/config/site";
 import { getTableOfContents } from "@/lib/toc";
 import { absoluteUrl, cn } from "@/lib/utils";
 import { badgeVariants } from "@/registry/new-york/ui/badge";
 import { allTags } from "contentlayer/generated";
-import { TagSelector } from "./TagSelector";
 
 type BaseParams = {
   slug: string[];
 };
 
-interface DocPageProps {
+interface TagPageProps {
   params: BaseParams | Promise<BaseParams>;
 }
 
-async function getDocFromParams({ params }: DocPageProps) {
+async function getDocFromParams({ params }: TagPageProps) {
   const { slug } = await params;
 
   const slugs = slug?.join("/") || "";
@@ -37,7 +38,7 @@ async function getDocFromParams({ params }: DocPageProps) {
 
 export async function generateMetadata({
   params,
-}: DocPageProps): Promise<Metadata> {
+}: TagPageProps): Promise<Metadata> {
   const doc = await getDocFromParams({ params });
 
   if (!doc) {
@@ -72,7 +73,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams(): Promise<
-  DocPageProps["params"][]
+  TagPageProps["params"][]
 > {
   if (
     process.env.PLATFORM === "cloudflare pages" ||
@@ -88,7 +89,7 @@ export async function generateStaticParams(): Promise<
   );
 }
 
-export default async function DocPage({ params }: DocPageProps) {
+export default async function TagPage({ params }: TagPageProps) {
   const doc = await getDocFromParams({ params });
 
   if (!doc) {
@@ -98,11 +99,11 @@ export default async function DocPage({ params }: DocPageProps) {
   const toc = await getTableOfContents(doc.body.raw);
 
   return (
-    <main className="relative py-6 lg:gap-10 lg:py-8">
+    <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
       <div className="mx-auto w-full min-w-0 max-w-2xl">
         {doc.title !== "Archive" && (
           <div className="mb-4 flex items-center space-x-1 text-sm leading-none text-muted-foreground">
-            <div className="truncate">Archive</div>
+            <div className="truncate">Tag</div>
             <ChevronRight className="h-3.5 w-3.5" />
             <div className="text-foreground">{doc.title}</div>
           </div>
@@ -111,8 +112,11 @@ export default async function DocPage({ params }: DocPageProps) {
           <h1 className={cn("scroll-m-20 text-3xl font-bold tracking-tight")}>
             {doc.title}
           </h1>
-
-          <TagSelector />
+          {doc.description && (
+            <p className="text-base text-muted-foreground">
+              <Balancer>{doc.description}</Balancer>
+            </p>
+          )}
         </div>
         {doc.links ? (
           <div className="flex items-center space-x-2 pt-4">
@@ -123,7 +127,7 @@ export default async function DocPage({ params }: DocPageProps) {
                 rel="noreferrer"
                 className={cn(badgeVariants({ variant: "secondary" }), "gap-1")}
               >
-                Tag
+                Archive
                 <ExternalLink className="h-3 w-3" />
               </Link>
             )}
@@ -140,11 +144,18 @@ export default async function DocPage({ params }: DocPageProps) {
             )}
           </div>
         ) : null}
-
         <div className="pb-12 pt-8">
           <Mdx code={doc.body.code} />
         </div>
         <DocsPager doc={doc} />
+      </div>
+      <div className="hidden text-sm xl:block">
+        <div className="sticky top-20 -mt-6 h-[calc(100vh-3.5rem)] pt-4">
+          <div className="no-scrollbar h-full overflow-auto pb-10">
+            {doc.toc && <DashboardTableOfContents toc={toc} />}
+            {/* <OpenInV0Cta className="mt-6 max-w-[80%]" /> */}
+          </div>
+        </div>
       </div>
     </main>
   );
