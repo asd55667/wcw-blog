@@ -41,9 +41,17 @@ You can easily navigate to posts using these organized paths.
   </LinkedCard>
 
   <LinkedCard href="/tag">
-    <p className="font-medium mt-2">Tag</p>
+    <div className="w-full font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0"> Tag </div>
 
-    <span>TODO:</span>
+    <div className="w-full px-2">
+      <div className="flex flex-col flex-grow px-2 justify-center">
+        <h3 className="text-start underline underline-offset-4 font-medium my-2">Title</h3>
+        <hr />
+        <span className="text-muted-foreground text-sm inline-flex w-full items-center justify-between gap-2">description <em className="text-xs" style={{flex: "none"}}>August 22, 2020</em></span>
+        <span className="text-muted-foreground text-sm inline-flex w-full items-center justify-between gap-2"><span className="text-primary font-medium ml-auto">legacy, life, tech</span></span>
+      </div>
+
+    </div>
   </LinkedCard>
 </div>
 
